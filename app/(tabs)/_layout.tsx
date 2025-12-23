@@ -1,18 +1,22 @@
-import { Tabs } from 'expo-router';
-import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+import { Image } from 'react-native';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
+        // headerTitle: () => (
+        //   <Image
+        //     source={require('../../assets/images/icon-192.png')}
+        //     style={{ width: 140, height: 35 }}
+        //     resizeMode="contain"
+        //   />
+        // ),
+        headerShadowVisible: false,
         tabBarActiveTintColor: '#007AFF',
-        tabBarInactiveTintColor: '#8E8E93',
-        tabBarStyle: {
-          paddingBottom: Platform.OS === 'ios' ? 20 : 5,
-          height: Platform.OS === 'ios' ? 85 : 60,
-        },
+        tabBarInactiveTintColor: '#8E8E93'
       }}>
       <Tabs.Screen
         name="download"
@@ -21,17 +25,17 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="download-outline" size={size} color={color} />
           ),
-          headerTitle: 'Download Video',
+          // headerTitle: 'Download Video',
         }}
       />
       <Tabs.Screen
         name="library"
         options={{
-          title: 'Library',
+          title: 'Archive',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="library-outline" size={size} color={color} />
+            <Ionicons name="library" size={size} color={color} />
           ),
-          headerTitle: 'My Downloads',
+          // headerTitle: 'My Archive',
         }}
       />
       <Tabs.Screen
@@ -41,7 +45,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings-outline" size={size} color={color} />
           ),
-          headerTitle: 'Settings',
+          // headerTitle: 'Settings',
         }}
       />
     </Tabs>

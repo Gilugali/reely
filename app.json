@@ -55,7 +55,8 @@
           "savePhotosPermission": "Allow Social Scraper to save videos to your photo library.",
           "isAccessMediaLocationEnabled": true
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,

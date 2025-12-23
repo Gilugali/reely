@@ -1,18 +1,18 @@
+import { downloadVideo } from '@/src/services/api';
+import { useDownloadStore } from '@/src/store/downloadStore';
 import React, { useState } from 'react';
 import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Alert,
   ActivityIndicator,
+  Alert,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { useDownloadStore } from '@/src/store/downloadStore';
-import { downloadVideo } from '@/src/services/api';
 
 export default function DownloadScreen() {
   const [url, setUrl] = useState('');
@@ -100,7 +100,7 @@ export default function DownloadScreen() {
           />
           
           <Text style={styles.hint}>
-            Supports Instagram Reels, YouTube Shorts, TikTok, and Facebook videos
+            copy & paste see the magic 
           </Text>
 
           <TouchableOpacity
