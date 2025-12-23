@@ -1,19 +1,26 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Image } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
-        // headerTitle: () => (
-        //   <Image
-        //     source={require('../../assets/images/icon-192.png')}
-        //     style={{ width: 140, height: 35 }}
-        //     resizeMode="contain"
-        //   />
-        // ),
+        headerTitle: 'Social Scraper',
+        headerTitleStyle: {
+          fontWeight: '600',
+          fontSize: 18,
+        },
+        headerLeft: () => (
+          <View style={styles.logoContainer}>
+            <Image
+              source={require('../../assets/images/icon-192.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+          </View>
+        ),
         headerShadowVisible: false,
         tabBarActiveTintColor: '#007AFF',
         tabBarInactiveTintColor: '#8E8E93'
@@ -51,4 +58,16 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  logoContainer: {
+    marginLeft: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 32,
+    height: 32,
+  },
+});
 

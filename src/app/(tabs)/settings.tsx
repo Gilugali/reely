@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useDownloadStore } from '@/src/store/downloadStore';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function SettingsScreen() {
   const clearAllDownloads = useDownloadStore((state) => state.clearAllDownloads);
@@ -61,6 +61,7 @@ export default function SettingsScreen() {
           <View style={styles.settingInfo}>
             <Text style={styles.settingLabel}>Version</Text>
             <Text style={styles.settingValue}>1.0.0</Text>
+            <Text style={styles.settingLabel}>Made by <Text style={styles.settingValue}>@gilugali</Text> on <Text style={styles.settingValue}>23/12/2025</Text></Text>
           </View>
         </View>
       </View>

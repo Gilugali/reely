@@ -1,21 +1,81 @@
 import { saveVideoToGallery } from '@/src/services/mediaService';
 import { useDownloadStore } from '@/src/store/downloadStore';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    ActivityIndicator,
-    Alert,
-    FlatList,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+
+// Mock data for preview
+const MOCK_DOWNLOADS = [
+  {
+    id: 'mock-1',
+    url: 'https://instagram.com/reel/abc123',
+    videoUrl: 'https://example.com/video1.mp4',
+    thumbnailUrl: 'https://picsum.photos/400/400?random=1',
+    title: 'Amazing Dance Challenge Video',
+    platform: 'instagram',
+    downloadedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
+  },
+  {
+    id: 'mock-2',
+    url: 'https://tiktok.com/@user/video/123',
+    videoUrl: 'https://example.com/video2.mp4',
+    thumbnailUrl: 'https://picsum.photos/400/400?random=2',
+    title: 'Funny Cat Compilation',
+    platform: 'tiktok',
+    downloadedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
+  },
+  {
+    id: 'mock-3',
+    url: 'https://youtube.com/shorts/xyz789',
+    videoUrl: 'https://example.com/video3.mp4',
+    thumbnailUrl: 'https://picsum.photos/400/400?random=3',
+    title: 'Cooking Tips and Tricks',
+    platform: 'youtube',
+    downloadedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+  },
+  {
+    id: 'mock-4',
+    url: 'https://instagram.com/reel/def456',
+    videoUrl: 'https://example.com/video4.mp4',
+    thumbnailUrl: 'https://picsum.photos/400/400?random=4',
+    title: 'Travel Vlog: Paris Adventures',
+    platform: 'instagram',
+    downloadedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
+  },
+  {
+    id: 'mock-5',
+    url: 'https://tiktok.com/@user/video/456',
+    videoUrl: 'https://example.com/video5.mp4',
+    thumbnailUrl: 'https://picsum.photos/400/400?random=5',
+    title: 'Quick Workout Routine',
+    platform: 'tiktok',
+    downloadedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(), // 14 days ago
+  },
+];
 
 export default function LibraryScreen() {
   const downloads = useDownloadStore((state) => state.downloads);
+  const addDownload = useDownloadStore((state) => state.addDownload);
   const [savingVideo, setSavingVideo] = useState<string | null>(null);
+
+  // Add mock data on mount if downloads is empty (for preview only)
+  useEffect(() => {
+    if (downloads.length === 0) {
+      MOCK_DOWNLOADS.forEach((mock) => {
+        addDownload(mock);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSaveToGallery = async (download: typeof downloads[0]) => {
     if (savingVideo) return;
@@ -58,7 +118,7 @@ export default function LibraryScreen() {
           source={
             item.thumbnailUrl
               ? { uri: item.thumbnailUrl }
-              : require('../../assets/images/icon.png')
+              : require('../../assets/images/icon-192.png')
           }
           style={styles.thumbnail}
           resizeMode="cover"
